@@ -1,0 +1,522 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+
+<script
+	src="https://bl.ocks.org/sarahjsquire/raw/4706c4d48962e9962175/6ad2d061715fbc9f6de328ecb5ab5d3a6c1003d5/jquery.jSlots.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+
+<script
+	src="https://bl.ocks.org/sarahjsquire/raw/4706c4d48962e9962175/6ad2d061715fbc9f6de328ecb5ab5d3a6c1003d5/jquery.jSlots.js"></script>
+
+
+<style>
+	* {
+		box-sizing: border-box;
+	}
+
+	li,
+	ul {
+		padding: 0;
+		margin: 0;
+	}
+
+	input {
+		margin: 4px 0;
+		font-family: Arial, sans-serif;
+		font-size: 16px;
+		padding: 50px 0;
+		height: 100px;
+		width: 100%;
+		border: none;
+		font-size: 37px;
+		text-align: center;
+		color: #333;
+	}
+
+	#slot li {
+		margin: 4px 0;
+		font-family: Arial, sans-serif;
+		font-size: 16px;
+		padding: 50px 0;
+		height: 100px;
+		width: 100%;
+		border: none;
+		font-size: 37px;
+		line-height: normal;
+		text-align: center;
+		overflow: hidden;
+	}
+
+	#slot_wrapper {
+		position: relative;
+	}
+
+	.jSlots-wrapper {
+		margin: 4px 0;
+		overflow: hidden;
+		/*oculta la lista */
+		height: 50px;
+		/*altura de caca slot */
+		width: 100%;
+		position: absolute;
+		top: 0px;
+		display: none;
+	}
+
+	#slot {
+		display: none;
+	}
+
+	.app {
+		height: 100vh;
+		display: flex;
+		flex-flow: column wrap;
+		width: 100%;
+	}
+
+	.form {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.form-group {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 15px;
+		width: 100%;
+	}
+
+	.form-label {
+		font-weight: 600;
+		flex: 0 0 120px;
+		margin-top: 10px;
+		margin-right: 10px;
+		text-align: right;
+		align-self: flex-start;
+	}
+
+	.form-value {
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: center;
+	}
+
+	.form-control {
+		border-radius: 3px;
+		border: solid 1px #c0c0c0;
+		padding: 7px 10px;
+		width: 100%;
+	}
+
+	.header {
+		background: #df75ff;
+		display: flex;
+		height: 44px;
+		width: 100%
+	}
+
+	.header h1 {
+		color: white;
+		font-size: 1.1em;
+		margin: auto;
+		text-align: center;
+	}
+
+	.main {
+		margin: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+
+		/* Then we define the flow direction and if we allow the items to wrap 
+    * Remember this is the same as:
+    * flex-direction: row;
+    * flex-wrap: wrap;
+	 * flex-flow: row wrap;
+    */
+		flex-direction: column;
+	}
+
+
+	.main>.container {
+		padding: 15px 15px;
+		max-width: 520px;
+		width: 100%;
+	}
+
+	.main .winner {
+		color: #292929;
+		font-size: 2em;
+	}
+
+	.main .counter {
+		font-size: 1.6em;
+	}
+
+	.main .winner,
+	.main .actions,
+	.main .counter {
+		padding: 20px 0;
+		text-align: center;
+	}
+
+	.main .actions {
+		display: flex;
+		align-items: center;
+		/* Aling Cross axis */
+		justify-content: space-around;
+		/* Align Main axis */
+		width: 100%;
+	}
+
+	.btn {
+		background: #e48cb9;
+		border: solid 2px #e48cb9;
+		border-radius: 7%;
+		color: white;
+		cursor: pointer;
+		font-size: 1.1em;
+		font-weight: 800;
+		outline: none;
+		text-align: center;
+		transition: 300ms all;
+	}
+
+	.btn:active {
+		transform: scale(0.9);
+	}
+
+	.btn.small {
+		padding: 2px 5px;
+	}
+
+	.btn.big {
+		padding: 10px;
+	}
+
+	.btn.btn-start {
+		border-radius: 50%;
+		height: 100px;
+		width: 100px;
+	}
+
+	.btn.selected {
+		border-color: green;
+	}
+
+	.btn:hover {
+		cursor: pointer;
+		opacity: 0.9;
+	}
+
+	.btn.disabled {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+
+	div#slot_wrapper {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		text-align: center;
+		width: 100%;
+	}
+
+	li {
+		color: #333;
+		margin: 4px 0;
+		font-family: Arial, sans-serif;
+		font-size: 16px;
+		padding: 50px 0;
+		height: 30px;
+		width: 100%;
+		border: none;
+		font-size: 37px;
+		text-align: center;
+	}
+
+	input#limpiar {
+		background: none;
+		border: none;
+		font-size: 37px;
+		width: 100%;
+		box-shadow: none;
+	}
+</style>
+
+<body>
+
+
+	<div>
+		<div class="main">
+			<div class="form-group">
+				<div class="form-value">
+					<div id="slot_wrapper">
+						<input type="text" class="search" placeholder="Ganadora" id="limpiar" name="ganador">
+						<ul id="slot">
+							<!-- la lista llenada por cada elemento -->
+							<li>test</li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+							<li> </li>
+						</ul>
+						<div class="button" onmousedown="party.confetti(this)" style="height:30px">
+
+						</div>
+						<div>
+							<button type="button" class="btn btn-start" id="random_location">Iniciar</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<h1>Ganadores</h1>
+			<div id="foo"></div>
+		</div>
+
+		<script>
+			window.onload = inicio;
+
+			function inicio() {
+				console.log('entró1'); document.getElementById("limpiar").addEventListener('click', limpiar);
+			}
+
+			function limpiar() {
+				console.log('entró2');
+				var activo = document.activeElement.id;
+				activo.innerHTML = "";
+			}
+
+			$(function () {
+
+
+				var msa = [
+					{ id: 1, name: 'Edin Andara', Cargo: 'Contador General', empresa: 'Azunosa' },
+					{ id: 2, name: 'Juan Rivera', Cargo: 'Auditor De Calidad', empresa: 'Azunosa' },
+					{ id: 3, name: 'Luis Diego Ortez', Cargo: 'Financiero  ', empresa: 'Azunosa' },
+					{ id: 4, name: 'Nelson Merino', Cargo: 'Gerente De Asuntos Corporativos Y Rse', empresa: 'Azunosa' },
+					{ id: 5, name: 'Raul Suazo', Cargo: 'Compras', empresa: 'Azunosa' },
+					{ id: 6, name: 'Edgardo Romero', Cargo: 'Gerente General', empresa: 'Cereales' },
+					{ id: 7, name: 'Francisco Ajuria', Cargo: 'Gerente General', empresa: 'Codis' },
+					{ id: 8, name: 'Omar Rodríguez', Cargo: 'Auditor General', empresa: 'Codis/Surtidora' },
+					{ id: 9, name: 'Johnny Alvarado', Cargo: 'Gerente Cofrutco', empresa: 'Cofrutco' },
+					{ id: 10, name: 'Alvaro Araujo', Cargo: 'Ingeniero', empresa: 'Enerbasa' },
+					{ id: 11, name: 'Ricardo Zuniga', Cargo: 'Director', empresa: 'Fondo Social ' },
+					{ id: 12, name: 'Linda Seeham', Cargo: 'Coordinador De Fundacion', empresa: 'Fundacion Kafie' },
+					{ id: 13, name: 'Juan Madrid', Cargo: 'Gerente General', empresa: 'Hondugas' },
+					{ id: 14, name: 'Osman Villanueva', Cargo: 'Gerente De Ventas', empresa: 'Hondugas' },
+					{ id: 15, name: 'Eduardo Madrid', Cargo: 'Proyectos', empresa: 'Inkasa' },
+					{ id: 16, name: 'Erick Perdomo', Cargo: 'Administrador', empresa: 'Inkasa' },
+					{ id: 17, name: 'Tania Sanchez', Cargo: '', empresa: 'Inkasa' },
+					{ id: 18, name: 'Yadia Cardona', Cargo: 'Gerente De Proyectos', empresa: 'Inkasa' },
+					{ id: 19, name: 'Carlos Quiroz', Cargo: 'It', empresa: 'Lachtosa' },
+					{ id: 20, name: 'Alejandro Ochoa', Cargo: 'Jefe De Diseño Digital', empresa: 'Lacthosa' },
+					{ id: 21, name: 'Allan Bulnes', Cargo: 'Diseñador', empresa: 'Lacthosa' },
+					{ id: 22, name: 'Andrea Ramirez', Cargo: 'Abogado', empresa: 'Lacthosa' },
+					{ id: 23, name: 'Denia Salgago', Cargo: 'Gerente De Comunicaciones', empresa: 'Lacthosa' },
+					{ id: 24, name: 'Edgardo Leiva', Cargo: 'Asesor', empresa: 'Lacthosa' },
+					{ id: 25, name: 'Elena Bonilla', Cargo: 'Contador Fiscal', empresa: 'Lacthosa' },
+					{ id: 26, name: 'Francia Eguigure', Cargo: 'Asistente De Presidencia', empresa: 'Lacthosa' },
+					{ id: 27, name: 'Julio Arauz', Cargo: 'Director Comercial', empresa: 'Lacthosa' },
+					{ id: 28, name: 'Luis Mejia', Cargo: 'Gerente Regional', empresa: 'Lacthosa' },
+					{ id: 29, name: 'Lynda Amaya', Cargo: 'Abogado', empresa: 'Lacthosa' },
+					{ id: 30, name: 'Kevin Lopez', Cargo: 'Analista Financiero', empresa: 'Lacthosa' },
+					{ id: 31, name: 'Marvin López', Cargo: 'Finanzas', empresa: 'Lacthosa' },
+					{ id: 32, name: 'Nancy Soto', Cargo: 'Gerente De Planificación Financiera', empresa: 'Lacthosa' },
+					{ id: 33, name: 'Pablo Madrid', Cargo: 'Analista Financiero', empresa: 'Lacthosa' },
+					{ id: 34, name: 'Sandra Fonseca', Cargo: 'Asistente De Presidencia', empresa: 'Lacthosa' },
+					{ id: 35, name: 'Saul Sinclair', Cargo: 'Analista Financiero', empresa: 'Lacthosa' },
+					{ id: 36, name: 'Vanni Lopez', Cargo: 'Asuntos Corporativos', empresa: 'Lacthosa' },
+					{ id: 37, name: 'Dixie Mayte Galo Rodríguez', Cargo: 'Gerente Comercial', empresa: 'Lkco' },
+					{ id: 38, name: 'Francisco Javier Lagos Castillo', Cargo: 'Jefe De Créditos', empresa: 'Lkco' },
+					{ id: 39, name: 'Gerson David Ramirez Garay', Cargo: 'Gerente De Auditoría', empresa: 'Lkco' },
+					{ id: 40, name: 'Glenda Xiomara Urbina Sauceda', Cargo: 'Gerente De Mercadeo', empresa: 'Lkco' },
+					{ id: 41, name: 'Jesús Abdallah Janineh Rivera', Cargo: 'Gerente General', empresa: 'Lkco' },
+					{ id: 42, name: 'Nely Odet Rivas Varela', Cargo: 'Gerente De Ventas Y Operaciones', empresa: 'Lkco' },
+					{ id: 43, name: 'Olvin Edgardo Nelson Carranza', Cargo: 'Contador General', empresa: 'Lkco' },
+					{ id: 44, name: 'Raúl Antonio Zepeda Castro', Cargo: 'Gerente De Finanzas', empresa: 'Lkco' },
+					{ id: 45, name: 'Ronald Bacca Alvarado', Cargo: 'Gerente De It', empresa: 'Lkco' },
+					{ id: 46, name: 'Walter Amadeo Martínez', Cargo: 'Jefe De Bodega', empresa: 'Lkco' },
+					{ id: 47, name: 'Adan Salgado ', Cargo: 'Gerente Financiero', empresa: 'Lufussa' },
+					{ id: 48, name: 'Aldo Bove', Cargo: 'Presidente', empresa: 'Lufussa' },
+					{ id: 49, name: 'Angélica López', Cargo: 'Gerente Recursos Humanos', empresa: 'Lufussa' },
+					{ id: 50, name: 'Armando Ayes ', Cargo: 'Gerente Técnico', empresa: 'Lufussa' },
+					{ id: 51, name: 'Armando Busmail', Cargo: 'Financiero Corporativo Y Desarrollo', empresa: 'Lufussa' },
+					{ id: 52, name: 'Carlos Carranza', Cargo: 'Auditor General', empresa: 'Lufussa' },
+					{ id: 53, name: 'Carlos Membreño', Cargo: 'Ingeniero', empresa: 'Lufussa' },
+					{ id: 54, name: 'Cecilia Nuñez', Cargo: 'Gerente Interino Deresa', empresa: 'Lufussa' },
+					{ id: 55, name: 'Cinthya Maradiaga ', Cargo: 'Contralor General', empresa: 'Lufussa' },
+					{ id: 56, name: 'Claudia Reyes', Cargo: 'Asistente De Auditoria', empresa: 'Lufussa' },
+					{ id: 57, name: 'Eduardo Ortega', Cargo: 'Servicios Compartidos', empresa: 'Lufussa' },
+					{ id: 58, name: 'Erick Mejía', Cargo: 'Jefe De It', empresa: 'Lufussa' },
+					{ id: 59, name: 'Esdras Maradiaga', Cargo: 'Corredor De Seguros', empresa: 'Lufussa' },
+					{ id: 60, name: 'Gabriel Peñaranda', Cargo: 'Corredor De Seguros', empresa: 'Lufussa' },
+					{ id: 61, name: 'Martin Velásquez', Cargo: 'Ingeniero Proyectos', empresa: 'Lufussa' },
+					{ id: 62, name: 'Michelle Martínez', Cargo: 'Coordinador De Rrhh', empresa: 'Lufussa' },
+					{ id: 63, name: 'Mauricio Bueso', Cargo: 'Gerente De Compras Corporativo', empresa: 'Lufussa' },
+					{ id: 64, name: 'Neptaly Palacios', Cargo: 'Ingeniero', empresa: 'Lufussa' },
+					{ id: 65, name: 'Oscar Hernández', Cargo: 'Ingeniero', empresa: 'Lufussa' },
+					{ id: 66, name: 'Rafael Escoto', Cargo: 'Jefe De Contabilidad Y Costos', empresa: 'Lufussa' },
+					{ id: 67, name: 'Raul Graugnard', Cargo: 'Asesor Legal', empresa: 'Lufussa' },
+					{ id: 68, name: 'Wendy  Méndez', Cargo: 'Tesorera', empresa: 'Lufussa' },
+					{ id: 69, name: 'Yamileth Majano', Cargo: 'Asistente De Presidencia', empresa: 'Lufussa' },
+					{ id: 70, name: 'Nelson Ramirez ', Cargo: 'Gerente General', empresa: 'Lufussa Planta' },
+					{ id: 71, name: 'Edmundo Del Carmen', Cargo: 'Finanzas', empresa: 'Lufusssa' },
+					{ id: 72, name: 'Eymi Lagos', Cargo: 'Administradora De Proyectos', empresa: 'Planta San Martin' },
+					{ id: 73, name: 'Melvin Cálix', Cargo: 'Gerente', empresa: 'Seseisa' },
+					{ id: 74, name: 'Carlos Chinchilla', Cargo: 'Piloto', empresa: 'Tramecsa' },
+					{ id: 75, name: 'Rene Zelaya', Cargo: 'Piloto', empresa: 'Tramecsa' },
+					{ id: 76, name: 'Roger Matamoros', Cargo: 'Piloto', empresa: 'Tramecsa' },
+					{ id: 77, name: 'Oscar Rosignolli', Cargo: '', empresa: '' },
+					{ id: 78, name: 'Heidi Méndez', Cargo: '', empresa: '' },
+					{ id: 79, name: 'Erick Cruz', Cargo: '', empresa: '' },
+					{ id: 80, name: 'Fernando Castellón', Cargo: '', empresa: '' },
+					{ id: 81, name: 'Daniel Rapalo', Cargo: '', empresa: '' },
+					{ id: 82, name: 'Gabriel Bonnet', Cargo: '', empresa: '' },
+					{ id: 83, name: 'Diego Hilsaca', Cargo: '', empresa: '' },
+				],
+					$input = $('input'),
+					random_index;
+
+				//lista recursiva hasta detenerse en el elemento configurado
+				function makeSlotList(list) {
+					//soporta hasta 18 valores en la animacion
+					if (list.length < 2000) {//el valor puede ser ajustado
+						var index = _.random(msa.length - 1);
+						if (list.length === 1) {
+							/*
+							elemento inicial de la lista
+							*/
+							random_index = index;
+						}
+						list.push('<li index=' + _.random(msa.length - 1) + '>' + msa[index].name + '</li>');
+						// console.log(msa.length - 1);
+						return makeSlotList(list);
+					} else {
+						//dio un giro
+						//la entrada se limpia
+						$input.val('');
+						// se agrega el elemento seleccionado
+						$('#slot').html(list.join('')).parent().show().trigger('spin');
+						return list;
+					}
+				}
+
+				//se crea la lista de elementos o slot
+				function makeSlots() {
+					//inicia en el valor aleatorio previo
+					var list = ['<li>' + $input.val() + '</li>'];
+					// console.log(list);
+					var contenido = document.getElementsByName('ganador')[0].placeholder = '';
+					//se hace recursivo el llamado
+					makeSlotList(list);
+
+
+				}
+
+				$('#slot').jSlots({
+					number: 1,
+					spinner: '.jSlots-wrapper',
+					spinEvent: 'spin',
+					time: 5000,
+					loops: 4,
+					endNum: 2,//finaliza en el segundo elmento del arreglo aleatorio
+					onEnd: function (finalElement) {
+						// Arreglo Vacío
+
+						//set result
+						$input.val(msa[random_index].name);
+						// console.log(msa[random_index].name);
+						// console.log(msa[random_index].id);
+						//oculta spiner
+						$(this.spinner).hide();
+
+						const dataId = [msa[random_index].name,];
+
+						const setData = (idData) => {
+							// setReload(!reload);
+							// Agregamos al arreglo vacío un elemento
+							dataId.push(idData);
+						};
+
+						// document.querySelectorAll('button').forEach(boton => {
+						// boton.addEventListener('click', function () {
+
+						document.getElementById('foo').appendChild(makeUL(dataId));
+						let list = '';
+						//EVENTO A LOS BOTONES PARA OBTENER ID
+						//MANDAMOS A LLAMAR TU FUNCION
+						setData(msa[random_index].name);
+						//MOSTRAMOS EL ARREGLO
+
+						function makeUL(array) {
+							// Create the list element:
+							var list = document.createElement('ol');
+							for (var i = 0; i < array.length; i++) {
+								// Create the list item:
+								var item = document.createElement('li');
+
+								// Set its contents:
+								item.appendChild(document.createTextNode(array[i]));
+
+								// Add it to the list:
+								list.appendChild(item);
+
+							}
+
+							// Finally, return the constructed list:
+							return list;
+						}
+						// dataId = [];
+
+						// Add the contents of options[0] to #foo:
+
+						console.log(dataId);
+						// })
+
+						// })
+					}
+				});
+
+				//elemento aleatorio
+				$('#random_location').on('click', makeSlots);
+
+
+			});
+
+
+
+			document.querySelector(".button").addEventListener("click", function (e) {
+				party.confetti(this);
+			});
+
+			party.confetti(runButton, {
+				count: party.variation.range(20, 40),
+			});
+
+
+		</script>
+</body>
+
+</html>
