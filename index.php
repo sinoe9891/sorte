@@ -1,5 +1,5 @@
 <?php
-	;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 	<script src="https://bl.ocks.org/sarahjsquire/raw/4706c4d48962e9962175/6ad2d061715fbc9f6de328ecb5ab5d3a6c1003d5/jquery.jSlots.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
 
@@ -26,6 +26,9 @@
 
 	<div>
 		<div class="main">
+			<div class="conte">
+				<div><img class="logo" src="https://grupok.com.hn/wp-content/uploads/2022/09/logo_v-copia.svg" /></div>
+			</div>
 			<div class="form-group">
 				<div class="form-value">
 					<div id="slot_wrapper">
@@ -64,10 +67,11 @@
 
 				</div>
 			</div>
-			<h1 >Participantes <span id="participantes"></span> </h1>
-			<h1 >Ganadores <span id="ganadores"></span></h1>
+			<h1>Participantes <span id="participantes"></span> </h1>
+			<h1>Ganadores <span id="ganadores"></span></h1>
 			<!-- <input type="text" id="ganadores"> -->
-			<div id="foo"></div>
+			<div id="foo">
+			</div>
 		</div>
 
 		<script src="script.js"></script>
