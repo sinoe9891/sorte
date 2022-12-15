@@ -12,95 +12,70 @@ function limpiar() {
 }
 
 $(function () {
-
-
 	//lista recursiva hasta detenerse en el elemento configurado
-
-
 	var msa = [
-		{ id: 1, name: '- Edin Andara', Cargo: 'Contador General', empresa: 'Azunosa' },
-		{ id: 2, name: '- Juan Rivera', Cargo: 'Auditor De Calidad', empresa: 'Azunosa' },
-		{ id: 3, name: '- Luis Diego Ortez', Cargo: 'Financiero  ', empresa: 'Azunosa' },
-		// { id: 4, name: '- Nelson Merino', Cargo: 'Gerente De Asuntos Corporativos Y Rse', empresa: 'Azunosa' },
-		// { id: 5, name: '- Raul Suazo', Cargo: 'Compras', empresa: 'Azunosa' },
-		// { id: 6, name: '- Edgardo Romero', Cargo: 'Gerente General', empresa: 'Cereales' },
-		// { id: 7, name: '- Francisco Ajuria', Cargo: 'Gerente General', empresa: 'Codis' },
-		// { id: 8, name: '- Omar Rodríguez', Cargo: 'Auditor General', empresa: 'Codis/Surtidora' },
-		// { id: 9, name: '- Johnny Alvarado', Cargo: 'Gerente Cofrutco', empresa: 'Cofrutco' },
-		// { id: 10, name: '- Alvaro Araujo', Cargo: 'Ingeniero', empresa: 'Enerbasa' },
-		// { id: 11, name: '- Ricardo Zuniga', Cargo: 'Director', empresa: 'Fondo Social ' },
-		// { id: 12, name: '- Linda Seeham', Cargo: 'Coordinador De Fundacion', empresa: 'Fundacion Kafie' },
-		// { id: 13, name: '- Juan Madrid', Cargo: 'Gerente General', empresa: 'Hondugas' },
-		// { id: 14, name: '- Osman Villanueva', Cargo: 'Gerente De Ventas', empresa: 'Hondugas' },
-		// { id: 15, name: '- Eduardo Madrid', Cargo: 'Proyectos', empresa: 'Inkasa' },
-		// { id: 16, name: '- Erick Perdomo', Cargo: 'Administrador', empresa: 'Inkasa' },
-		// { id: 17, name: '- Tania Sanchez', Cargo: '', empresa: 'Inkasa' },
-		// { id: 18, name: '- Yadia Cardona', Cargo: 'Gerente De Proyectos', empresa: 'Inkasa' },
-		// { id: 19, name: '- Carlos Quiroz', Cargo: 'It', empresa: 'Lachtosa' },
-		// { id: 20, name: '- Alejandro Ochoa', Cargo: 'Jefe De Diseño Digital', empresa: 'Lacthosa' },
-		// { id: 21, name: '- Allan Bulnes', Cargo: 'Diseñador', empresa: 'Lacthosa' },
-		// { id: 22, name: '- Andrea Ramírez', Cargo: 'Abogado', empresa: 'Lacthosa' },
-		// { id: 23, name: '- Denia Salgago', Cargo: 'Gerente De Comunicaciones', empresa: 'Lacthosa' },
-		// { id: 24, name: '- Edgardo Leiva', Cargo: 'Asesor', empresa: 'Lacthosa' },
-		// { id: 25, name: '- Elena Bonilla', Cargo: 'Contador Fiscal', empresa: 'Lacthosa' },
-		// { id: 26, name: '- Francia Eguigure', Cargo: 'Asistente De Presidencia', empresa: 'Lacthosa' },
-		// { id: 27, name: '- Julio Arauz', Cargo: 'Director Comercial', empresa: 'Lacthosa' },
-		// { id: 28, name: '- Luis Mejia', Cargo: 'Gerente Regional', empresa: 'Lacthosa' },
-		// { id: 29, name: '- Lynda Amaya', Cargo: 'Abogado', empresa: 'Lacthosa' },
-		// { id: 30, name: '- Kevin Lopez', Cargo: 'Analista Financiero', empresa: 'Lacthosa' },
-		// { id: 31, name: '- Marvin López', Cargo: 'Finanzas', empresa: 'Lacthosa' },
-		// { id: 32, name: '- Nancy Soto', Cargo: 'Gerente De Planificación Financiera', empresa: 'Lacthosa' },
-		// { id: 33, name: '- Pablo Madrid', Cargo: 'Analista Financiero', empresa: 'Lacthosa' },
-		// { id: 34, name: '- Sandra Fonseca', Cargo: 'Asistente De Presidencia', empresa: 'Lacthosa' },
-		// { id: 35, name: '- Saul Sinclair', Cargo: 'Analista Financiero', empresa: 'Lacthosa' },
-		// { id: 36, name: '- Vanni Lopez', Cargo: 'Asuntos Corporativos', empresa: 'Lacthosa' },
-		// { id: 37, name: '- Dixie Mayte Galo Rodríguez', Cargo: 'Gerente Comercial', empresa: 'Lkco' },
-		// { id: 38, name: '- Francisco Javier Lagos Castillo', Cargo: 'Jefe De Créditos', empresa: 'Lkco' },
-		// { id: 39, name: '- Gerson David Ramírez Garay', Cargo: 'Gerente De Auditoría', empresa: 'Lkco' },
-		// { id: 40, name: '- Glenda Xiomara Urbina Sauceda', Cargo: 'Gerente De Mercadeo', empresa: 'Lkco' },
-		// { id: 41, name: '- Jesús Abdallah Janineh Rivera', Cargo: 'Gerente General', empresa: 'Lkco' },
-		// { id: 42, name: '- Nely Odet Rivas Varela', Cargo: 'Gerente De Ventas Y Operaciones', empresa: 'Lkco' },
-		// { id: 43, name: '- Olvin Edgardo Nelson Carranza', Cargo: 'Contador General', empresa: 'Lkco' },
-		// { id: 44, name: '- Raúl Antonio Zepeda Castro', Cargo: 'Gerente De Finanzas', empresa: 'Lkco' },
-		// { id: 45, name: '- Ronald Bacca Alvarado', Cargo: 'Gerente De It', empresa: 'Lkco' },
-		// { id: 46, name: '- Walter Amadeo Martínez', Cargo: 'Jefe De Bodega', empresa: 'Lkco' },
-		// { id: 47, name: '- Adan Salgado ', Cargo: 'Gerente Financiero', empresa: 'Lufussa' },
-		// { id: 48, name: '- Aldo Bove', Cargo: 'Presidente', empresa: 'Lufussa' },
-		// { id: 49, name: '- Angélica López', Cargo: 'Gerente Recursos Humanos', empresa: 'Lufussa' },
-		// { id: 50, name: '- Armando Ayes ', Cargo: 'Gerente Técnico', empresa: 'Lufussa' },
-		// { id: 51, name: '- Armando Busmail', Cargo: 'Financiero Corporativo Y Desarrollo', empresa: 'Lufussa' },
-		// { id: 52, name: '- Carlos Carranza', Cargo: 'Auditor General', empresa: 'Lufussa' },
-		// { id: 53, name: '- Carlos Membreño', Cargo: 'Ingeniero', empresa: 'Lufussa' },
-		// { id: 54, name: '- Cecilia Nuñez', Cargo: 'Gerente Interino Deresa', empresa: 'Lufussa' },
-		// { id: 55, name: '- Cinthya Maradiaga ', Cargo: 'Contralor General', empresa: 'Lufussa' },
-		// { id: 56, name: '- Claudia Reyes', Cargo: 'Asistente De Auditoria', empresa: 'Lufussa' },
-		// { id: 57, name: '- Eduardo Ortega', Cargo: 'Servicios Compartidos', empresa: 'Lufussa' },
-		// { id: 58, name: '- Erick Mejía', Cargo: 'Jefe De It', empresa: 'Lufussa' },
-		// { id: 59, name: '- Esdras Maradiaga', Cargo: 'Corredor De Seguros', empresa: 'Lufussa' },
-		// { id: 60, name: '- Gabriel Peñaranda', Cargo: 'Corredor De Seguros', empresa: 'Lufussa' },
-		// { id: 61, name: '- Martin Velásquez', Cargo: 'Ingeniero Proyectos', empresa: 'Lufussa' },
-		// { id: 62, name: '- Michelle Martínez', Cargo: 'Coordinador De Rrhh', empresa: 'Lufussa' },
-		// { id: 63, name: '- Mauricio Bueso', Cargo: 'Gerente De Compras Corporativo', empresa: 'Lufussa' },
-		// { id: 64, name: '- Neptaly Palacios', Cargo: 'Ingeniero', empresa: 'Lufussa' },
-		// { id: 65, name: '- Oscar Hernández', Cargo: 'Ingeniero', empresa: 'Lufussa' },
-		// { id: 66, name: '- Rafael Escoto', Cargo: 'Jefe De Contabilidad Y Costos', empresa: 'Lufussa' },
-		// { id: 67, name: '- Raul Graugnard', Cargo: 'Asesor Legal', empresa: 'Lufussa' },
-		// { id: 68, name: '- Wendy  Méndez', Cargo: 'Tesorera', empresa: 'Lufussa' },
-		// { id: 69, name: '- Yamileth Majano', Cargo: 'Asistente De Presidencia', empresa: 'Lufussa' },
-		// { id: 70, name: '- Nelson Ramírez ', Cargo: 'Gerente General', empresa: 'Lufussa Planta' },
-		// { id: 71, name: '- Edmundo Del Carmen', Cargo: 'Finanzas', empresa: 'Lufusssa' },
-		// { id: 72, name: '- Eymi Lagos', Cargo: 'Administradora De Proyectos', empresa: 'Planta San Martin' },
-		// { id: 73, name: '- Melvin Cálix', Cargo: 'Gerente', empresa: 'Seseisa' },
-		// { id: 74, name: '- Carlos Chinchilla', Cargo: 'Piloto', empresa: 'Tramecsa' },
-		// { id: 75, name: '- Rene Zelaya', Cargo: 'Piloto', empresa: 'Tramecsa' },
-		// { id: 76, name: '- Roger Matamoros', Cargo: 'Piloto', empresa: 'Tramecsa' },
-		// { id: 77, name: '- Oscar Rosignolli', Cargo: '', empresa: '' },
-		// { id: 78, name: '- Heidi Méndez', Cargo: '', empresa: '' },
-		// { id: 79, name: '- Erick Cruz', Cargo: '', empresa: '' },
-		// { id: 80, name: '- Fernando Castellón', Cargo: '', empresa: '' },
-		// { id: 81, name: '- Daniel Rapalo', Cargo: '', empresa: '' },
-		// { id: 82, name: '- Gabriel Bonnet', Cargo: '', empresa: '' },
-		// { id: 83, name: '- Diego Hilsaca', Cargo: '', empresa: '' },
+		{ id: 1, name: '- Jorge Sierra', Cargo: 'Periodista', empresa: 'Proceso Digital' },
+		{ id: 2, name: '- Alejandra Canales ', Cargo: 'Periodista', empresa: 'Medio' },
+		{ id: 3, name: '- Alejandro	Ochoa', Cargo: 'Periodista', empresa: 'Grupo K' },
+		{ id: 4, name: '- Alex Lagos', Cargo: 'Periodista', empresa: 'Zona Trendy' },
+		{ id: 5, name: '- Ana Belinda  Colindres ', Cargo: 'Periodista', empresa: 'Stereo Luz' },
+		{ id: 6, name: '- Ana Ruth Cáceres', Cargo: 'Periodista', empresa: 'DARA MAGAZINE' },
+		{ id: 7, name: '- Bruce Villatoro', Cargo: 'Periodista', empresa: 'Quien Opina' },
+		{ id: 8, name: '- Camarógrafo HCH', Cargo: 'Periodista', empresa: 'HCH' },
+		{ id: 9, name: '- Camarógrafo Suyapa Medios ', Cargo: 'Camarógrafo', empresa: 'Suyapa Medios' },
+		{ id: 10, name: '- Camarógrafo', Cargo: 'Camarógrafo', empresa: 'Canal 11' },
+		{ id: 11, name: '- Camarógrafo', Cargo: 'Camarógrafo', empresa: 'Canal 6' },
+		{ id: 12, name: '- Camarógrafo', Cargo: 'Camarógrafo', empresa: 'Maya TV' },
+		{ id: 13, name: '- Carlos Zúniga', Cargo: 'Periodista', empresa: 'Lo Eliges' },
+		{ id: 14, name: '- Carlos Zúniga', Cargo: 'Periodista', empresa: 'El Espectador' },
+		{ id: 15, name: '- Carmen Barrientos', Cargo: 'Periodista', empresa: 'Faro Informativo' },
+		{ id: 16, name: '- Carmen Peña', Cargo: 'Periodista', empresa: 'Canal 45' },
+		{ id: 17, name: '- David Medina', Cargo: 'Periodista', empresa: 'Radio América' },
+		{ id: 18, name: '- Denia Salgado', Cargo: 'Periodista', empresa: 'Grupo K' },
+		{ id: 19, name: '- Eloina Valle', Cargo: 'Periodista', empresa: 'Suyapa Medios' },
+		{ id: 20, name: '- Elsa Ordoñez', Cargo: 'Periodista', empresa: 'RSD Radio' },
+		{ id: 21, name: '- Ericka Bertrand', Cargo: 'Periodista', empresa: 'Stereo Amor' },
+		{ id: 22, name: '- Fabian Sevilla', Cargo: 'Periodista', empresa: 'Canal 51' },
+		{ id: 23, name: '- Flor Serrano', Cargo: 'Periodista', empresa: 'Maya TV' },
+		{ id: 24, name: '- Francisco Romero ', Cargo: 'Periodista', empresa: 'Canal 51' },
+		{ id: 25, name: '- Gisela Cálix', Cargo: 'Periodista', empresa: 'Canal 11' },
+		{ id: 26, name: '- Glenda Urbina', Cargo: 'Periodista', empresa: 'Grupo K' },
+		{ id: 27, name: '- Gustavo Castillo', Cargo: 'Periodista', empresa: 'TVC' },
+		{ id: 28, name: '- Humberto Quiroz', Cargo: 'Periodista', empresa: 'TVC' },
+		{ id: 29, name: '- Indira Aceituno', Cargo: 'Periodista', empresa: 'Hondudiario' },
+		{ id: 30, name: '- Ingrid Antúnez', Cargo: 'Periodista', empresa: 'Tgusta' },
+		{ id: 31, name: '- Iris Ramírez', Cargo: 'Periodista', empresa: 'La Tribuna' },
+		{ id: 32, name: '- Iris Castillo', Cargo: 'Periodista', empresa: 'Canal 51' },
+		{ id: 33, name: '- Ivis Romero ', Cargo: 'Periodista', empresa: 'Azteca Honduras' },
+		{ id: 34, name: '- Jhonny  Sevilla', Cargo: 'Periodista', empresa: 'El Libertador' },
+		{ id: 35, name: '- Josefina Perez', Cargo: 'Periodista', empresa: 'Q´ Hubo TV' },
+		{ id: 36, name: '- Julie Ayestas', Cargo: 'Periodista', empresa: '' },
+		{ id: 37, name: '- Karen Zuniga', Cargo: 'Periodista', empresa: 'Grupo K' },
+		{ id: 38, name: '- Karen Borjas', Cargo: 'Periodista', empresa: 'Stereo Luz' },
+		{ id: 39, name: '- Leticia Martínez ', Cargo: 'Periodista', empresa: 'Mujeres emprendedoras' },
+		{ id: 40, name: '- Lili Valladares', Cargo: 'Periodista', empresa: 'Canal 6' },
+		{ id: 41, name: '- Lisandro Vallecillo', Cargo: 'Periodista', empresa: 'Grupo K' },
+		{ id: 42, name: '- Manuel Alvarez', Cargo: 'Periodista', empresa: 'CODIS' },
+		{ id: 43, name: '- Mayra Ávila ', Cargo: 'Periodista', empresa: 'El Diario de Honduras' },
+		{ id: 44, name: '- Melissa Coca', Cargo: 'Periodista', empresa: 'CETECO' },
+		{ id: 45, name: '- Michelle Alvarado', Cargo: 'Periodista', empresa: 'Grupo K' },
+		{ id: 46, name: '- Miriam Kafie', Cargo: 'Periodista', empresa: 'Grupo K' },
+		{ id: 47, name: '- Noé Zúniga ', Cargo: 'Periodista', empresa: 'Medio' },
+		{ id: 48, name: '- Nubia Osorto', Cargo: 'Periodista', empresa: 'Emprendedores.hn' },
+		{ id: 49, name: '- Oscar Rosinoglli', Cargo: 'Periodista', empresa: 'Grupo K' },
+		{ id: 50, name: '- Oscar Bojas ', Cargo: 'Periodista', empresa: 'Revista Honduras Market' },
+		{ id: 51, name: '- Oscar Esquivel', Cargo: 'Periodista', empresa: 'El Pulso' },
+		{ id: 52, name: '- Patricia Romero ', Cargo: 'Periodista', empresa: 'Kairos FM' },
+		{ id: 53, name: '- Rosa  Pineda', Cargo: 'Periodista', empresa: 'La Tribuna' },
+		{ id: 54, name: '- Rosemary Rivera', Cargo: 'Periodista', empresa: 'Radio América' },
+		{ id: 55, name: '- Ruth Flores', Cargo: 'Periodista', empresa: 'INVOSA' },
+		{ id: 56, name: '- Sandra Corea', Cargo: 'Periodista', empresa: 'Seproc' },
+		{ id: 57, name: '- Stephanie Rivera', Cargo: 'Periodista', empresa: 'HCH' },
+		{ id: 58, name: '- Suyapa Reyes', Cargo: 'Periodista', empresa: 'Canal 51' },
+		{ id: 59, name: '- Suyapa Banegas', Cargo: 'Periodista', empresa: 'Suyapa Medios' },
+		{ id: 60, name: '- Teresa Torres', Cargo: 'Periodista', empresa: 'Azteca Honduras' },
+		{ id: 61, name: '- Walter Castro', Cargo: 'Periodista', empresa: 'Honduras al Día' },
+		{ id: 62, name: '- Wilfredo Oseguera', Cargo: 'Periodista', empresa: '50 Minutos' },
 
 	], $input = $('input'),
 		random_index;
@@ -111,7 +86,7 @@ $(function () {
 	random_index = Math.floor(Math.random() * msa.length);
 	// console.log(arreglo);
 
-	$('#slot').jSlots({
+	$('.slot').jSlots({
 		number: 1,
 		spinner: '.jSlots-wrapper',
 		spinEvent: 'spin',
@@ -119,13 +94,14 @@ $(function () {
 		loops: 2,
 		endNum: 2,//finaliza en el segundo elmento del arreglo aleatorio
 		onEnd: function (finalElement) {
+			// console.log('Hola')
 			// Arreglo Vacío
 
 
 			//set result
 			let persona = (random_index);
-
-			$input.val(arreglo[random_index].name);
+			// Nombre del ganador
+			$input.val(arreglo[random_index].name + ' - ' + arreglo[random_index].empresa);
 
 			//oculta spiner
 			$(this.spinner).hide();
@@ -140,38 +116,40 @@ $(function () {
 			function eliminar(persona) {
 
 				// console.log(random_index);
-				let primo = random_index;
+				let elementoaeliminar = random_index;
 				let resultado = [];
-				let elementoborrado = arreglo.splice(primo, 1);
+				let elementoborrado = arreglo.splice(elementoaeliminar, 1);
 
 
 				const dataId = resultado;
-
 
 				const setData = (idData) => {
 					// setReload(!reload);
 					// Agregamos al arreglo vacío un elemento
 					dataId.push(idData);
+					
 				};
-
+				
 				agregar = [];
 				persona = persona;
-				// console.log('Eliminados: ');
-				// console.log(elementoborrado);
 
-				agregar = elementoborrado[0].name;
-
-				agregarvacio = []
-				agreagar = dataId.push(elementoborrado);
+				// Nombre del ganador que se muestra en la lista.
+				agregar = elementoborrado[0].name + ' - ' + elementoborrado[0].empresa;
+				// agregarvacio = []
+				// agreagar = dataId.push(elementoborrado);
+				
+				// console.log(dataId);
+				// console.log(agregar.sort());
 				document.getElementById('foo').appendChild(makeUL(agregar));
-
+				
 				let list = '';
 				//EVENTO A LOS BOTONES PARA OBTENER ID
 				//MANDAMOS A LLAMAR TU FUNCION
 				setData(agregar);
 				//MOSTRAMOS EL ARREGLO
-
+				
 				function makeUL(array) {
+					console.log(array);
 					// Create the list element:
 					// var cabeza = document.createElement('th');
 					var list = document.createElement('ul');
@@ -180,12 +158,13 @@ $(function () {
 					for (var i = 0; i < array.length; i++) {
 						// Create the list item:
 
-						// Set its contents:
+						// Item se agregar a la lista de elementos ganadores:
 						item.appendChild(document.createTextNode(array[i]));
 
 						// Add it to the list:
 						list.appendChild(item);
 					}
+					// console.log(array);
 					// Cofetti
 					var duration = 3 * 1000;
 					var animationEnd = Date.now() + duration;
@@ -208,6 +187,7 @@ $(function () {
 						confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
 					}, 250);
 
+
 					// Finally, return the constructed list:
 					return list;
 				}
@@ -229,7 +209,7 @@ $(function () {
 
 
 
-
+	// Lista Random
 	function makeSlotList(list) {
 		//soporta hasta 18 valores en la animacion
 		// console.log(list);
@@ -259,7 +239,7 @@ $(function () {
 				return false;
 			}
 
-
+			// Nombre Giratorio
 			list.push('<li index=' + _.random(arreglo.length - 1) + '>' + arreglo[index].name + '</li>');
 			return makeSlotList(list);
 		} else {
