@@ -30,7 +30,7 @@
 			<div class="form-group">
 				<div class="form-value">
 					<div id="slot_wrapper">
-						<input type="text" class="search" placeholder="Ganadora" id="limpiar" name="ganador">
+						<input type="text" class="search" placeholder="Ganador" id="limpiar" name="ganador">
 						<ul id="slot" class="slot">
 							<!-- la lista llenada por cada elemento -->
 							<li>test</li>
