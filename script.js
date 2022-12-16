@@ -21,8 +21,8 @@ $(function () {
 		{ id: 5, name: '- Ana Belinda  Colindres ', Cargo: 'Periodista', empresa: 'Stereo Luz' },
 		{ id: 6, name: '- Ana Ruth Cáceres', Cargo: 'Periodista', empresa: 'DARA MAGAZINE' },
 		{ id: 7, name: '- Bruce Villatoro', Cargo: 'Periodista', empresa: 'Quien Opina' },
-		{ id: 8, name: '- Camarógrafo HCH', Cargo: 'Periodista', empresa: 'HCH' },
-		{ id: 9, name: '- Camarógrafo Suyapa Medios ', Cargo: 'Camarógrafo', empresa: 'Suyapa Medios' },
+		{ id: 8, name: '- Camarógrafo', Cargo: 'Periodista', empresa: 'HCH' },
+		{ id: 9, name: '- Camarógrafo', Cargo: 'Camarógrafo', empresa: 'Suyapa Medios' },
 		{ id: 10, name: '- Camarógrafo', Cargo: 'Camarógrafo', empresa: 'Canal 11' },
 		{ id: 11, name: '- Camarógrafo', Cargo: 'Camarógrafo', empresa: 'Canal 6' },
 		{ id: 12, name: '- Camarógrafo', Cargo: 'Camarógrafo', empresa: 'Maya TV' },
@@ -90,8 +90,8 @@ $(function () {
 		number: 1,
 		spinner: '.jSlots-wrapper',
 		spinEvent: 'spin',
-		time: 1000,
-		loops: 2,
+		time: 10000,
+		loops: 4,
 		endNum: 2,//finaliza en el segundo elmento del arreglo aleatorio
 		onEnd: function (finalElement) {
 			// console.log('Hola')
